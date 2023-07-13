@@ -1,0 +1,12 @@
+﻿<Application x:Class="SBWordListMaker.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SBWordListMaker"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <FontFamily x:Key="Regular">pack://application:,,,/Fonts/#M PLUS 1p Regular</FontFamily>
+        <FontFamily x:Key="Bold">pack://application:,,,/Fonts/#M PLUS 1p Bold</FontFamily>
+        <FontFamily x:Key="Black">pack://application:,,,/Fonts/#M PLUS 1p Black</FontFamily>
+        <FontFamily x:Key="CBlack">pack://application:,,,/Fonts/#Rounded Mplus 1c Black</FontFamily>
+    </Application.Resources>
+</Application>
