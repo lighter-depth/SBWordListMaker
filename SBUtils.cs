@@ -46,7 +46,7 @@ internal static class SBUtils
         var result = new List<Word>();
         if (arg == 2) return words;
         for (var i = 7; i < 12; i++) result.AddRange(words.Where(x => x.Name.Length == i));
-        result.AddRange(words.Where(x => x.Name.Length > 12));
+        result.AddRange(words.Where(x => x.Name.Length >= 12));
         if (arg == 1) return result;
         result.AddRange(words.Where(x => x.Name.Length == 6).Select(x => x with { Name = $"({x.Name})"}));
         result.AddRange(words.Where(x => x.Name.Length < 6).Select(x => x with { Name = $"({x.Name})" }));
