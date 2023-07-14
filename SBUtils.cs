@@ -10,7 +10,7 @@ namespace SBWordListMaker;
 
 internal static class SBUtils
 {
-    public static string Version { get; set; } = "v0.1.0";
+    public static string Version { get; set; } = "v0.1.1";
     public static string[][] KanaList => new[] 
     {
         new[]{ "あ", "い", "う", "え", "お" },
