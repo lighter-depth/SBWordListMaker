@@ -23,7 +23,7 @@ public partial class SearchResultPage : Page
     internal static Searcher Searcher { get; set; } = new();
     internal static string SearchCondition { get; set; } = string.Empty;
     List<Word> searchResult = new();
-    readonly List<List<string>> pages = new();
+    string[][] pages = Array.Empty<string[]>();
     int pageIndex = 0;
     public SearchResultPage()
     {
@@ -34,6 +34,7 @@ public partial class SearchResultPage : Page
     public async void ShowResult()
     {
         await Task.Run(() => { searchResult = Searcher.Search(); });
+        searchResult.Sort();
         if (searchResult.Count == 0)
         {
             LblResultIndicator.Content = "単語が見つかりませんでした。";
@@ -42,26 +43,10 @@ public partial class SearchResultPage : Page
         }
         LblResultIndicator.Visibility = Visibility.Hidden;
         GridSearchResult.Visibility = Visibility.Visible;
-        SplitToPages();
-        LblTotalCounter.Content = $"全{searchResult.Count - 1}件";
-        if(pages.Count == 1) BtnNext.Visibility = Visibility.Hidden;
+        pages = searchResult.Select(x => x.ToString()).Chunk(20).ToArray();
+        LblTotalCounter.Content = $"全{searchResult.Count}件";
+        if(pages.Length == 1) BtnNext.Visibility = Visibility.Hidden;
         ShowPage();
-    }
-    private void SplitToPages()
-    {
-        var count = 0;
-        var page = new List<string>();
-        foreach (var word in searchResult)
-        {
-            count++;
-            page.Add(word.ToString());
-            if (count % 20 == 0)
-            {
-                pages.Add(new(page));
-                page = new();
-            }
-            if (count == searchResult.Count && count % 20 != 0) pages.Add(new(page));
-        }
     }
     static ListViewItem StringToListViewItem(string str)
     {
@@ -80,7 +65,7 @@ public partial class SearchResultPage : Page
     {
         ListResultLeft.ItemsSource = new List<ListViewItem>(pages[pageIndex].Take(10).Select(x => StringToListViewItem(x)));
         ListResultRight.ItemsSource = new List<ListViewItem>(pages[pageIndex].Skip(10).Take(10).Select(x => StringToListViewItem(x)));
-        LblPageCounter.Content = $"{pageIndex + 1} / {pages.Count}";
+        LblPageCounter.Content = $"{pageIndex + 1} / {pages.Length}";
     }
 
     private void BtnPrevious_Click(object sender, RoutedEventArgs e)
@@ -95,7 +80,7 @@ public partial class SearchResultPage : Page
     {
         pageIndex++;
         BtnPrevious.Visibility = Visibility.Visible;
-        if(pageIndex == pages.Count - 1) BtnNext.Visibility = Visibility.Hidden;
+        if(pageIndex == pages.Length - 1) BtnNext.Visibility = Visibility.Hidden;
         ShowPage();
     }
 }

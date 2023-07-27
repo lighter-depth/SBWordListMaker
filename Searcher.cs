@@ -24,7 +24,6 @@ class Searcher
     Func<Word, bool> GetPredicate()
     {
         Func<Word, bool> typePred = _ => true;
-        var types = new[] { Type1, Type2 };
         typePred = (Type1, Type2) switch
         {
             (WordType.Empty, WordType.Empty) => x => x.IsEmpty, 

@@ -1,0 +1,191 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <PackageIcon>iconraw.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="dic\no type\no-type-words-extension-common.csv" />
+    <None Remove="dic\no type\no-type-words-extension-main.csv" />
+    <None Remove="dic\no type\no-type-words-extension-proper.csv" />
+    <None Remove="dic\no type\no-type-words-extension-quantity.csv" />
+    <None Remove="dic\no type\no-type-words-extension-sahen-conn.csv" />
+    <None Remove="dic\no type\no-type-words.csv" />
+    <None Remove="dic\typed\あ行\typed-words-あ.csv" />
+    <None Remove="dic\typed\あ行\typed-words-い.csv" />
+    <None Remove="dic\typed\あ行\typed-words-う.csv" />
+    <None Remove="dic\typed\あ行\typed-words-え.csv" />
+    <None Remove="dic\typed\あ行\typed-words-お.csv" />
+    <None Remove="dic\typed\か行\typed-words-か.csv" />
+    <None Remove="dic\typed\か行\typed-words-き.csv" />
+    <None Remove="dic\typed\か行\typed-words-く.csv" />
+    <None Remove="dic\typed\か行\typed-words-け.csv" />
+    <None Remove="dic\typed\か行\typed-words-こ.csv" />
+    <None Remove="dic\typed\が行\typed-words-が.csv" />
+    <None Remove="dic\typed\が行\typed-words-ぎ.csv" />
+    <None Remove="dic\typed\が行\typed-words-ぐ.csv" />
+    <None Remove="dic\typed\が行\typed-words-げ.csv" />
+    <None Remove="dic\typed\が行\typed-words-ご.csv" />
+    <None Remove="dic\typed\さ行\typed-words-さ.csv" />
+    <None Remove="dic\typed\さ行\typed-words-し.csv" />
+    <None Remove="dic\typed\さ行\typed-words-す.csv" />
+    <None Remove="dic\typed\さ行\typed-words-せ.csv" />
+    <None Remove="dic\typed\さ行\typed-words-そ.csv" />
+    <None Remove="dic\typed\ざ行\typed-words-ざ.csv" />
+    <None Remove="dic\typed\ざ行\typed-words-じ.csv" />
+    <None Remove="dic\typed\ざ行\typed-words-ず.csv" />
+    <None Remove="dic\typed\ざ行\typed-words-ぜ.csv" />
+    <None Remove="dic\typed\ざ行\typed-words-ぞ.csv" />
+    <None Remove="dic\typed\た行\typed-words-た.csv" />
+    <None Remove="dic\typed\た行\typed-words-ち.csv" />
+    <None Remove="dic\typed\た行\typed-words-つ.csv" />
+    <None Remove="dic\typed\た行\typed-words-て.csv" />
+    <None Remove="dic\typed\た行\typed-words-と.csv" />
+    <None Remove="dic\typed\だ行\typed-words-だ.csv" />
+    <None Remove="dic\typed\だ行\typed-words-で.csv" />
+    <None Remove="dic\typed\だ行\typed-words-ど.csv" />
+    <None Remove="dic\typed\な行\typed-words-な.csv" />
+    <None Remove="dic\typed\な行\typed-words-に.csv" />
+    <None Remove="dic\typed\な行\typed-words-ぬ.csv" />
+    <None Remove="dic\typed\な行\typed-words-ね.csv" />
+    <None Remove="dic\typed\な行\typed-words-の.csv" />
+    <None Remove="dic\typed\は行\typed-words-は.csv" />
+    <None Remove="dic\typed\は行\typed-words-ひ.csv" />
+    <None Remove="dic\typed\は行\typed-words-ふ.csv" />
+    <None Remove="dic\typed\は行\typed-words-へ.csv" />
+    <None Remove="dic\typed\は行\typed-words-ほ.csv" />
+    <None Remove="dic\typed\ば行\typed-words-ば.csv" />
+    <None Remove="dic\typed\ば行\typed-words-び.csv" />
+    <None Remove="dic\typed\ば行\typed-words-ぶ.csv" />
+    <None Remove="dic\typed\ば行\typed-words-べ.csv" />
+    <None Remove="dic\typed\ば行\typed-words-ぼ.csv" />
+    <None Remove="dic\typed\ぱ行\typed-words-ぱ.csv" />
+    <None Remove="dic\typed\ぱ行\typed-words-ぴ.csv" />
+    <None Remove="dic\typed\ぱ行\typed-words-ぷ.csv" />
+    <None Remove="dic\typed\ぱ行\typed-words-ぺ.csv" />
+    <None Remove="dic\typed\ぱ行\typed-words-ぽ.csv" />
+    <None Remove="dic\typed\ま行\typed-words-ま.csv" />
+    <None Remove="dic\typed\ま行\typed-words-み.csv" />
+    <None Remove="dic\typed\ま行\typed-words-む.csv" />
+    <None Remove="dic\typed\ま行\typed-words-め.csv" />
+    <None Remove="dic\typed\ま行\typed-words-も.csv" />
+    <None Remove="dic\typed\や行\typed-words-や.csv" />
+    <None Remove="dic\typed\や行\typed-words-ゆ.csv" />
+    <None Remove="dic\typed\や行\typed-words-よ.csv" />
+    <None Remove="dic\typed\ら行\typed-words-ら.csv" />
+    <None Remove="dic\typed\ら行\typed-words-り.csv" />
+    <None Remove="dic\typed\ら行\typed-words-る.csv" />
+    <None Remove="dic\typed\ら行\typed-words-れ.csv" />
+    <None Remove="dic\typed\ら行\typed-words-ろ.csv" />
+    <None Remove="dic\typed\わ行\typed-words-わ.csv" />
+    <None Remove="Fonts\MPLUS1p-Black.ttf" />
+    <None Remove="Fonts\MPLUS1p-Bold.ttf" />
+    <None Remove="Fonts\MPLUS1p-Regular.ttf" />
+    <None Remove="Fonts\MPLUSRounded1c-Black.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\Downloads\iconraw.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="dic\no type\no-type-words-extension-common.csv" />
+    <Resource Include="dic\no type\no-type-words-extension-main.csv" />
+    <Resource Include="dic\no type\no-type-words-extension-proper.csv" />
+    <Resource Include="dic\no type\no-type-words-extension-quantity.csv" />
+    <Resource Include="dic\no type\no-type-words-extension-sahen-conn.csv" />
+    <Resource Include="dic\no type\no-type-words.csv" />
+    <Resource Include="dic\typed\あ行\typed-words-あ.csv" />
+    <Resource Include="dic\typed\あ行\typed-words-い.csv" />
+    <Resource Include="dic\typed\あ行\typed-words-う.csv" />
+    <Resource Include="dic\typed\あ行\typed-words-え.csv" />
+    <Resource Include="dic\typed\あ行\typed-words-お.csv" />
+    <Resource Include="dic\typed\か行\typed-words-か.csv" />
+    <Resource Include="dic\typed\か行\typed-words-き.csv" />
+    <Resource Include="dic\typed\か行\typed-words-く.csv" />
+    <Resource Include="dic\typed\か行\typed-words-け.csv" />
+    <Resource Include="dic\typed\か行\typed-words-こ.csv" />
+    <Resource Include="dic\typed\が行\typed-words-が.csv" />
+    <Resource Include="dic\typed\が行\typed-words-ぎ.csv" />
+    <Resource Include="dic\typed\が行\typed-words-ぐ.csv" />
+    <Resource Include="dic\typed\が行\typed-words-げ.csv" />
+    <Resource Include="dic\typed\が行\typed-words-ご.csv" />
+    <Resource Include="dic\typed\さ行\typed-words-さ.csv" />
+    <Resource Include="dic\typed\さ行\typed-words-し.csv" />
+    <Resource Include="dic\typed\さ行\typed-words-す.csv" />
+    <Resource Include="dic\typed\さ行\typed-words-せ.csv" />
+    <Resource Include="dic\typed\さ行\typed-words-そ.csv" />
+    <Resource Include="dic\typed\ざ行\typed-words-ざ.csv" />
+    <Resource Include="dic\typed\ざ行\typed-words-じ.csv" />
+    <Resource Include="dic\typed\ざ行\typed-words-ず.csv" />
+    <Resource Include="dic\typed\ざ行\typed-words-ぜ.csv" />
+    <Resource Include="dic\typed\ざ行\typed-words-ぞ.csv" />
+    <Resource Include="dic\typed\た行\typed-words-た.csv" />
+    <Resource Include="dic\typed\た行\typed-words-ち.csv" />
+    <Resource Include="dic\typed\た行\typed-words-つ.csv" />
+    <Resource Include="dic\typed\た行\typed-words-て.csv" />
+    <Resource Include="dic\typed\た行\typed-words-と.csv" />
+    <Resource Include="dic\typed\だ行\typed-words-だ.csv" />
+    <Resource Include="dic\typed\だ行\typed-words-で.csv" />
+    <Resource Include="dic\typed\だ行\typed-words-ど.csv" />
+    <Resource Include="dic\typed\な行\typed-words-な.csv" />
+    <Resource Include="dic\typed\な行\typed-words-に.csv" />
+    <Resource Include="dic\typed\な行\typed-words-ぬ.csv" />
+    <Resource Include="dic\typed\な行\typed-words-ね.csv" />
+    <Resource Include="dic\typed\な行\typed-words-の.csv" />
+    <Resource Include="dic\typed\は行\typed-words-は.csv" />
+    <Resource Include="dic\typed\は行\typed-words-ひ.csv" />
+    <Resource Include="dic\typed\は行\typed-words-ふ.csv" />
+    <Resource Include="dic\typed\は行\typed-words-へ.csv" />
+    <Resource Include="dic\typed\は行\typed-words-ほ.csv" />
+    <Resource Include="dic\typed\ば行\typed-words-ば.csv" />
+    <Resource Include="dic\typed\ば行\typed-words-び.csv" />
+    <Resource Include="dic\typed\ば行\typed-words-ぶ.csv" />
+    <Resource Include="dic\typed\ば行\typed-words-べ.csv" />
+    <Resource Include="dic\typed\ば行\typed-words-ぼ.csv" />
+    <Resource Include="dic\typed\ぱ行\typed-words-ぱ.csv" />
+    <Resource Include="dic\typed\ぱ行\typed-words-ぴ.csv" />
+    <Resource Include="dic\typed\ぱ行\typed-words-ぷ.csv" />
+    <Resource Include="dic\typed\ぱ行\typed-words-ぺ.csv" />
+    <Resource Include="dic\typed\ぱ行\typed-words-ぽ.csv" />
+    <Resource Include="dic\typed\ま行\typed-words-ま.csv" />
+    <Resource Include="dic\typed\ま行\typed-words-み.csv" />
+    <Resource Include="dic\typed\ま行\typed-words-む.csv" />
+    <Resource Include="dic\typed\ま行\typed-words-め.csv" />
+    <Resource Include="dic\typed\ま行\typed-words-も.csv" />
+    <Resource Include="dic\typed\や行\typed-words-や.csv" />
+    <Resource Include="dic\typed\や行\typed-words-ゆ.csv" />
+    <Resource Include="dic\typed\や行\typed-words-よ.csv" />
+    <Resource Include="dic\typed\ら行\typed-words-ら.csv" />
+    <Resource Include="dic\typed\ら行\typed-words-り.csv" />
+    <Resource Include="dic\typed\ら行\typed-words-る.csv" />
+    <Resource Include="dic\typed\ら行\typed-words-れ.csv" />
+    <Resource Include="dic\typed\ら行\typed-words-ろ.csv" />
+    <Resource Include="dic\typed\わ行\typed-words-わ.csv" />
+    <Resource Include="Fonts\MPLUS1p-Black.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\MPLUS1p-Bold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\MPLUS1p-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\MPLUSRounded1c-Black.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>

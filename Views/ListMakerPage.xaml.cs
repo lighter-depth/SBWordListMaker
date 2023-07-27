@@ -145,6 +145,7 @@ public partial class ListMakerPage : Page
                 && ListTypeIndex != 2
                 && int.TryParse(wordCount, out var tmp)) takeCount = tmp;
                 if (filtered.Count != 0) sb.Append(BuildRow(filtered.Take(takeCount).ToList()));
+                else if (FormatIndex == 1) sb.Append("・\r\n");
             }
         }
         return sb.ToString();

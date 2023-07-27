@@ -10,7 +10,7 @@ namespace SBWordListMaker;
 
 internal static class SBUtils
 {
-    public static string Version { get; set; } = "v0.1.1";
+    public static string Version { get; set; } = "v0.1.4";
     public static string[][] KanaList => new[] 
     {
         new[]{ "あ", "い", "う", "え", "お" },
@@ -52,4 +52,6 @@ internal static class SBUtils
         result.AddRange(words.Where(x => x.Name.Length < 6).Select(x => x with { Name = $"({x.Name})" }));
         return result;
     }
+    public static T? At<T>(this IEnumerable<T> source, int index) => source.ElementAtOrDefault(index);
+    public static T? At<T>(this IEnumerable<T> source, Index index) => source.ElementAtOrDefault(index);
 }

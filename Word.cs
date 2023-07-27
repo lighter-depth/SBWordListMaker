@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SBWordListMaker;
 
-internal record struct Word(string Name, WordType Type1, WordType Type2)
+internal record struct Word(string Name, WordType Type1, WordType Type2) : IComparable<Word>
 {
     public readonly bool Contains(WordType type) => Type1 == type || Type2 == type;
     public readonly bool IsEmpty => Type1 == WordType.Empty;
@@ -25,7 +25,7 @@ internal record struct Word(string Name, WordType Type1, WordType Type2)
     public readonly string ToFormat(int formatType, WordType omitType)
     {
         var word = this with { };
-        if(omitType != WordType.Empty)
+        if(omitType != WordType.Empty && formatType != 3)
         {
             var otherType = Type1 == omitType ? Type2 : Type1;
             word = word with { Type1 = otherType, Type2 = WordType.Empty };
@@ -36,6 +36,12 @@ internal record struct Word(string Name, WordType Type1, WordType Type2)
         return word.Name + toSpace(word.Type1) + type1 + toSpace(word.Type2) + type2;
         static string toSpace(WordType type) => type != WordType.Empty ? " " : string.Empty;
     }
+
+    public int CompareTo(Word other)
+    {
+        return Name.CompareTo(other.Name);
+    }
+
     static Word()
     {
         for(var i = 1; i < 26; i++)

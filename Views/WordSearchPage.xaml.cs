@@ -91,7 +91,7 @@ public partial class WordSearchPage : Page
         SearchIndex = index;
         var grids = new List<Grid> { ZenpouKouhou, Zenpou, Kouhou, Bubun, Kanzen, RegexSearch };
         grids.ForEach(grid => grid.Visibility = Visibility.Hidden);
-        if (grids.ElementAtOrDefault(index) != null) grids[index].Visibility = Visibility.Visible;
+        if (grids.At(index) != null) grids[index].Visibility = Visibility.Visible;
     }
 
     private void PkrType1_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -163,8 +163,8 @@ public partial class WordSearchPage : Page
             return;
         }
 
-        var first = contents.ElementAtOrDefault(0)?.Trim() ?? string.Empty;
-        var last = contents.ElementAtOrDefault(1)?.Trim() ?? string.Empty;
+        var first = contents.At(0)?.Trim() ?? string.Empty;
+        var last = contents.At(1)?.Trim() ?? string.Empty;
         Body = new(index switch
         {
             0 => $@"^{first}.*{last}ー*$",

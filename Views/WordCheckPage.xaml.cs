@@ -20,7 +20,7 @@ namespace SBWordListMaker.Views;
 /// </summary>
 public partial class WordCheckPage : Page
 {
-    bool isBeforeInit = true;
+    readonly bool isBeforeInit = true;
     public WordCheckPage()
     {
         InitializeComponent();

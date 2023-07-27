@@ -56,9 +56,9 @@ internal static class WordDictionary
             var line = await reader.ReadLineAsync();
             if (string.IsNullOrWhiteSpace(line)) continue;
             var formattedLine = line?.Trim().Split() ?? Array.Empty<string>();
-            var name = formattedLine.ElementAtOrDefault(0) ?? string.Empty;
-            var type1 = formattedLine.ElementAtOrDefault(1)?.StringToType() ?? WordType.Empty;
-            var type2 = formattedLine.ElementAtOrDefault(2)?.StringToType() ?? WordType.Empty;
+            var name = formattedLine.At(0) ?? string.Empty;
+            var type1 = formattedLine.At(1)?.StringToType() ?? WordType.Empty;
+            var type2 = formattedLine.At(2)?.StringToType() ?? WordType.Empty;
             var word = new Word(name, type1, type2);
             TypedWords.Add(word);
         }
