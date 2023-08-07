@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -13,6 +12,7 @@ internal static class WordDictionary
     public static List<Word> PerfectDic { get; private set; } = new();
     public static List<string> NoTypeWords { get; internal set; } = new();
     public static List<Word> TypedWords { get; internal set; } = new();
+    static readonly List<List<Word>> SplitList = new();
     public static async Task InitAsync()
     {
         foreach (var i in new[] 
@@ -21,15 +21,29 @@ internal static class WordDictionary
             "no-type-words-extension-quantity", "no-type-words-extension-sahen-conn"
         }) await ReadCsvStringAsync(i);
         foreach (var i in SBUtils.KanaList.SelectMany(x => x).ToArray()) await ReadCsvWordAsync(i);
-        await Task.Run(InitPerfectDic);
+        await Task.WhenAll(InitPerfectDic(), InitSplitList());
     }
-    public static void InitPerfectDic()
+    static async Task InitPerfectDic()
     {
-        var result = new Dictionary<string, (WordType Type1, WordType Type2)>();
-        foreach (var i in NoTypeWords) result.TryAdd(i, (WordType.Empty, WordType.Empty));
-        foreach (var i in TypedWords) result[i.Name] = (i.Type1, i.Type2);
-        PerfectDic = result.ToList().Select(x => new Word(x.Key, x.Value.Type1, x.Value.Type2)).ToList();
+        await Task.Run(() =>
+        {
+            var result = new Dictionary<string, (WordType Type1, WordType Type2)>();
+            foreach (var i in NoTypeWords) result.TryAdd(i, (WordType.Empty, WordType.Empty));
+            foreach (var i in TypedWords) result[i.Name] = (i.Type1, i.Type2);
+            PerfectDic = result.ToList().Select(x => new Word(x.Key, x.Value.Type1, x.Value.Type2)).ToList();
+        });
     }
+    static async Task InitSplitList()
+    {
+        await Task.Run(() =>
+        {
+            var kanas = SBUtils.KanaList.SelectMany(x => x).ToArray();
+            foreach(var i in kanas) SplitList.Add(TypedWords.Where(x => x.Name.At(0) == i.At(0)).ToList());
+        });
+    }
+    public static List<Word> GetSplitList(int index) => SplitList[index];
+    public static List<Word> GetSplitList(char startChar) => SplitList[SBUtils.KanaList.SelectMany(x => x).ToList().IndexOf(startChar.ToString())];
+
     static async Task ReadCsvStringAsync(string filename)
     {
         var fileUri = new Uri($"/dic/no type/{filename}.csv", UriKind.Relative);

@@ -1,23 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SBWordListMaker.Views;
 
-/// <summary>
-/// SearchResultPage.xaml の相互作用ロジック
-/// </summary>
 public partial class SearchResultPage : Page
 {
     internal static Searcher Searcher { get; set; } = new();
@@ -53,14 +43,12 @@ public partial class SearchResultPage : Page
         return new ListViewItem()
         {
             Content = str,
-            FontSize = str.Length < 24 ? 18.3 : 18.3 * 23 / str.Length
+            FontSize = str.Length < 24 ? 18.3 : 18.3 * 23 / str.Length,
         };
     }
 
-    private void BtnBack_Click(object sender, RoutedEventArgs e)
-    {
-        Navigator.Navigate(nameof(WordSearchPage));
-    }
+    private void BtnBack_Click(object sender, RoutedEventArgs e) => Navigator.Navigate(nameof(WordSearchPage));
+
     private void ShowPage()
     {
         ListResultLeft.ItemsSource = new List<ListViewItem>(pages[pageIndex].Take(10).Select(x => StringToListViewItem(x)));

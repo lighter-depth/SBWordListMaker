@@ -3,22 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SBWordListMaker.Views;
 
-/// <summary>
-/// WordSearchPage.xaml の相互作用ロジック
-/// </summary>
 public partial class WordSearchPage : Page
 {
     readonly bool isBeforeInit = true;
@@ -111,10 +101,7 @@ public partial class WordSearchPage : Page
         if (PkrTypeCondition.SelectedIndex == 3) Type2 = WordType.Empty;
     }
 
-    private void BtnBack_Click(object sender, RoutedEventArgs e)
-    {
-        Navigator.Navigate(nameof(StartPage));
-    }
+    private void BtnBack_Click(object sender, RoutedEventArgs e) => Navigator.Navigate(nameof(StartPage));
     private (WordType? Type1, WordType? Type2) ConvertTypes()
     {
         var type1 = (PkrType1.SelectedItem as string ?? string.Empty).StringToType() as WordType?;

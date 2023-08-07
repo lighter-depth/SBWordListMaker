@@ -7,16 +7,28 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\BestDamagePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\CalcDamagePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\LoadingPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\ListMakerPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\OtherContentsPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\SearchResultPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\StartPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UNOSearchPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\WordCheckPage.xaml.cs">
@@ -27,6 +39,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\BestDamagePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CalcDamagePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\LoadingPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -36,10 +54,16 @@
     <Page Update="Views\ListMakerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\OtherContentsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\SearchResultPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\StartPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UNOSearchPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\WordCheckPage.xaml">

@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace SBWordListMaker;
 
 internal static class SBUtils
 {
-    public static string Version { get; set; } = "v0.1.4";
-    public static string[][] KanaList => new[] 
+    public static string Version { get; set; } = "v0.2.0";
+    public static string[][] KanaList => new[]
     {
         new[]{ "あ", "い", "う", "え", "お" },
         new[]{ "か", "き", "く", "け", "こ"},
@@ -48,10 +45,35 @@ internal static class SBUtils
         for (var i = 7; i < 12; i++) result.AddRange(words.Where(x => x.Name.Length == i));
         result.AddRange(words.Where(x => x.Name.Length >= 12));
         if (arg == 1) return result;
-        result.AddRange(words.Where(x => x.Name.Length == 6).Select(x => x with { Name = $"({x.Name})"}));
+        result.AddRange(words.Where(x => x.Name.Length == 6).Select(x => x with { Name = $"({x.Name})" }));
         result.AddRange(words.Where(x => x.Name.Length < 6).Select(x => x with { Name = $"({x.Name})" }));
         return result;
     }
     public static T? At<T>(this IEnumerable<T> source, int index) => source.ElementAtOrDefault(index);
     public static T? At<T>(this IEnumerable<T> source, Index index) => source.ElementAtOrDefault(index);
+
+    public static char GetLastChar(this string str)
+    {
+        return (str.Length == 0
+        || str.Length == 1 && str.At(0) == 'ー') ? '\0'
+        : siritoriChar.ContainsKey(str.At(^1)) ? siritoriChar[str.At(^1)]
+        : str.At(^1) == 'ー' && siritoriChar.ContainsKey(str.At(^2)) ? siritoriChar[str.At(^2)]
+        : str.At(^1) == 'ー' ? str.At(^2)
+        : str.At(^1);
+    }
+    static readonly Dictionary<char, char> siritoriChar = new()
+    {
+        ['ゃ'] = 'や',
+        ['ゅ'] = 'ゆ',
+        ['ょ'] = 'よ',
+        ['っ'] = 'つ',
+        ['ぁ'] = 'あ',
+        ['ぃ'] = 'い',
+        ['ぅ'] = 'う',
+        ['ぇ'] = 'え',
+        ['ぉ'] = 'お',
+        ['を'] = 'お',
+        ['ぢ'] = 'じ',
+        ['づ'] = 'ず'
+    };
 }

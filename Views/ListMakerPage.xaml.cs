@@ -1,28 +1,17 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SBWordListMaker.Views;
 
-/// <summary>
-/// ListMakerPage.xaml の相互作用ロジック
-/// </summary>
+
 public partial class ListMakerPage : Page
 {
     static string DirName = @"C:\Users";
@@ -59,10 +48,7 @@ public partial class ListMakerPage : Page
         PkrFormat.SelectedIndex = FormatIndex;
     }
 
-    private void BtnBack_Click(object sender, RoutedEventArgs e)
-    {
-        Navigator.Navigate(nameof(StartPage));
-    }
+    private void BtnBack_Click(object sender, RoutedEventArgs e) => Navigator.Navigate(nameof(OtherContentsPage));
 
     private void BtnFileSave_Click(object sender, RoutedEventArgs e)
     {
@@ -196,7 +182,7 @@ public partial class ListMakerPage : Page
         if (dialog.ShowDialog() is true)
         {
             var filename = dialog.FileName;
-            DirName = System.IO.Path.GetDirectoryName(filename) ?? @"C:\Users";
+            DirName = Path.GetDirectoryName(filename) ?? @"C:\Users";
             try
             {
                 File.WriteAllText(filename, wordList, Encoding.UTF8);
@@ -254,11 +240,7 @@ public partial class ListMakerPage : Page
         }
     }
 
-    private void PkrWordLength_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        var index = PkrWordLength.SelectedIndex;
-        WordLengthIndex = index;
-    }
+    private void PkrWordLength_SelectionChanged(object sender, SelectionChangedEventArgs e) => WordLengthIndex = PkrWordLength.SelectedIndex;
 
     private void PkrWordCount_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
@@ -267,15 +249,7 @@ public partial class ListMakerPage : Page
         TxtWordCount.Visibility = LblWordCount.Visibility = (Visibility)index;
     }
 
-    private void PkrKeyType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        var index = PkrKeyType.SelectedIndex;
-        KeyTypeIndex = index;
-    }
+    private void PkrKeyType_SelectionChanged(object sender, SelectionChangedEventArgs e) => KeyTypeIndex = PkrKeyType.SelectedIndex;
 
-    private void PkrFormat_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        var index = PkrFormat.SelectedIndex;
-        FormatIndex = index;
-    }
+    private void PkrFormat_SelectionChanged(object sender, SelectionChangedEventArgs e) => FormatIndex = PkrFormat.SelectedIndex;
 }

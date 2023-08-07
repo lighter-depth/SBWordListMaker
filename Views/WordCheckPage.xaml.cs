@@ -1,23 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SBWordListMaker.Views;
 
-/// <summary>
-/// WordCheckPage.xaml の相互作用ロジック
-/// </summary>
+
 public partial class WordCheckPage : Page
 {
     readonly bool isBeforeInit = true;
@@ -27,10 +14,7 @@ public partial class WordCheckPage : Page
         isBeforeInit = false;
     }
 
-    private void BtnBack_Click(object sender, RoutedEventArgs e)
-    {
-        Navigator.Navigate(nameof(StartPage));
-    }
+    private void BtnBack_Click(object sender, RoutedEventArgs e) => Navigator.Navigate(nameof(OtherContentsPage));
 
     private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
@@ -45,18 +29,18 @@ public partial class WordCheckPage : Page
         textBox.FontSize = text.Length < 12 ? 55 : 55 * (double)12 / text.Length;
         var formattedText = text.Length > 20 ? $"{text[..5]}...{text[^5..]}" : text;
         LblResult.Text = $"単語「{formattedText}」は\n";
-        if (text[^1] == 'ん') 
+        if (text[^1] == 'ん')
         {
             LblResult.Text += "んで終わっています。";
             return;
         }
-        if (!WordDictionary.PerfectDic.Select(x => x.Name).ToList().Contains(text)) 
+        if (!WordDictionary.PerfectDic.Select(x => x.Name).ToList().Contains(text))
         {
             LblResult.Text += "辞書にない単語です。";
             return;
         }
-        WordType type1 = WordType.Empty, type2 = WordType.Empty;
-        foreach (var i in WordDictionary.PerfectDic) 
+        var (type1, type2) = (WordType.Empty, WordType.Empty);
+        foreach (var i in WordDictionary.PerfectDic)
         {
             if (i.Name == text)
             {
